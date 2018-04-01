@@ -122,9 +122,13 @@ class Page extends React.Component {
             value={this.isValid ? "Open chat" : "Not valid"}
           />
         </div>
+        <footer>
+          <a href="https://github.com/cprecioso/whatsapp-now">Open source</a>
+        </footer>
         <style jsx>{`
           :global(html) {
             font-size: 3em;
+            font-family: sans-serif;
           }
           form {
             display: block;
@@ -212,6 +216,19 @@ class Page extends React.Component {
             visibility: hidden;
             height: 0;
             margin: 0;
+          }
+          footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.4rem;
+            margin-bottom: 0.2rem;
+          }
+          footer a {
+            color: inherit;
+            text-decoration: none;
           }
         `}</style>
       </form>
