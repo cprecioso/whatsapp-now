@@ -1,7 +1,8 @@
 import fetch from "cross-fetch"
 import ipUtils from "ip"
 
-export const getIp = req => req.connection.remoteAddress
+export const getIp = req =>
+  req && req.connection && req.connection.remoteAddress
 
 export const getCountryCode = async ip => {
   if (!ip || ipUtils.isPrivate(ip)) ip = ""
