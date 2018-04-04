@@ -8,7 +8,7 @@ all: export
 
 .PHONY: clean
 clean:
-	rm -rf node_modules out
+	rm -rf node_modules out .next
 
 .PHONY: bootstrap
 bootstrap: node_modules
