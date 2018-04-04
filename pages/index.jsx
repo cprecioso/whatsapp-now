@@ -1,16 +1,18 @@
 import PhoneNumber from "awesome-phonenumber"
-import { action, computed, observable, autorun } from "mobx"
+import { action, autorun, computed, flow, observable } from "mobx"
 import { observer } from "mobx-react"
 import React from "react"
 
-import { getCountryCode, getFlag, getIp } from "../util"
+import { getCountryCode, getFlag } from "../util"
 
 @observer
 class Page extends React.Component {
   @observable number = ""
   @observable forceShowButton = false
+  @observable userCountry = ""
 
   componentDidMount() {
+    this.updateCountry()
     autorun(() => {
       if (this.forceShowButton) {
         if (this.prevTimer) clearTimeout(this.prevTimer)
@@ -24,6 +26,10 @@ class Page extends React.Component {
     })
   }
 
+  updateCountry = flow(function*() {
+    this.userCountry = yield getCountryCode()
+  })
+
   @computed
   get showButton() {
     return this.forceShowButton || this.isPossible
@@ -31,7 +37,7 @@ class Page extends React.Component {
 
   @computed
   get pnObject() {
-    return new PhoneNumber(this.number, this.props.userCountry)
+    return new PhoneNumber(this.number, this.userCountry)
   }
 
   @computed
@@ -58,19 +64,19 @@ class Page extends React.Component {
   @computed
   get phoneCountry() {
     return (this.normalizedNumber
-      ? new PhoneNumber(this.normalizedNumber, this.props.userCountry)
+      ? new PhoneNumber(this.normalizedNumber, this.userCountry)
       : this.pnObject
     ).getRegionCode()
   }
 
   @computed
   get currentCountry() {
-    return this.phoneCountry || this.props.userCountry
+    return this.phoneCountry || this.userCountry
   }
 
   @computed
   get flag() {
-    return getFlag(this.currentCountry)
+    return this.currentCountry ? getFlag(this.currentCountry) : ""
   }
 
   @action
@@ -233,12 +239,6 @@ class Page extends React.Component {
         `}</style>
       </form>
     )
-  }
-
-  static async getInitialProps({ req }) {
-    const ip = req ? getIp(req) : ""
-    const userCountry = await getCountryCode(ip)
-    return { userCountry }
   }
 }
 
