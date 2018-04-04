@@ -2,11 +2,6 @@
   "name": "whatsapp-now",
   "version": "0.0.2",
   "private": true,
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start"
-  },
   "dependencies": {
     "awesome-phonenumber": "^2.2.5",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
