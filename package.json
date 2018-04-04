@@ -1,6 +1,6 @@
 {
   "name": "whatsapp-now",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "awesome-phonenumber": "^2.2.5",
