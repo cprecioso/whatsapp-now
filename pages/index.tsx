@@ -1,11 +1,24 @@
-import React, { SFC } from "react"
+import { NextSFC } from "next"
+import React from "react"
 import Box from "../src/components/Box"
 import PhoneForm from "../src/components/PhoneForm"
+import Redirector from "../src/components/Redirector"
 
-const IndexPage: SFC = () => (
+declare namespace IndexPage {
+  interface Props {
+    phone?: string
+    startWith?: string
+  }
+}
+
+const IndexPage: NextSFC<IndexPage.Props> = ({ phone, startWith }) => (
   <>
     <Box>
-      <PhoneForm />
+      {phone ? (
+        <Redirector phone={phone} />
+      ) : (
+        <PhoneForm defaultNumber={startWith} />
+      )}
     </Box>
     <footer>
       Made by <a href="https://carlosprecioso.com">Carlos Precioso</a> ·{" "}
@@ -35,5 +48,10 @@ const IndexPage: SFC = () => (
     `}</style>
   </>
 )
+
+IndexPage.getInitialProps = async ({ query }) => ({
+  phone: query.phone && "" + query.phone,
+  startWith: query.startWith && "" + query.startWith
+})
 
 export default IndexPage

@@ -5,9 +5,15 @@ import PhoneNumberModel from "../model/PhoneNumber"
 import { getFlag } from "../util"
 import PhoneInput from "./PhoneInput"
 
+declare namespace PhoneForm {
+  interface Props {
+    defaultNumber?: string
+  }
+}
+
 @observer
-class PhoneForm extends Component {
-  model = new PhoneNumberModel()
+class PhoneForm extends Component<PhoneForm.Props> {
+  model = new PhoneNumberModel(this.props.defaultNumber)
 
   @observable
   forceShowButton = false
