@@ -22,7 +22,7 @@ dev: node_modules
 
 .PHONY: build
 build: .next/BUILD_ID
-.next/BUILD_ID: node_modules next.config.js .babelrc pages/* util/*
+.next/BUILD_ID: node_modules next.config.js .babelrc pages/* src/*
 	$(next) build
 
 .PHONY: start

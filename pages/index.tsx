@@ -2,14 +2,20 @@ import PhoneNumber from "awesome-phonenumber"
 import { action, autorun, computed, flow, observable } from "mobx"
 import { observer } from "mobx-react"
 import React from "react"
-
-import { getCountryCode, getFlag } from "../util"
+import { getCountryCode, getFlag } from "../src/util"
 
 @observer
 class Page extends React.Component {
-  @observable number = ""
-  @observable forceShowButton = false
-  @observable userCountry = ""
+  @observable
+  number = ""
+
+  @observable
+  forceShowButton = false
+
+  @observable
+  userCountry = ""
+
+  prevTimer: ReturnType<typeof setTimeout> | null = null
 
   componentDidMount() {
     this.updateCountry()
@@ -26,7 +32,7 @@ class Page extends React.Component {
     })
   }
 
-  updateCountry = flow(function*() {
+  updateCountry = flow(function*(this: Page) {
     this.userCountry = yield getCountryCode()
   })
 
@@ -80,18 +86,18 @@ class Page extends React.Component {
   }
 
   @action
-  handleChange = evt => {
+  handleChange: JSX.IntrinsicElements["input"]["onChange"] = evt => {
     this.number = evt.target.value
   }
 
   @action
-  handleBlur = evt => {
+  handleBlur: JSX.IntrinsicElements["input"]["onBlur"] = evt => {
     this.forceShowButton = false
     if (this.isValid) this.number = this.normalizedNumber
   }
 
   @action
-  handleSubmit = evt => {
+  handleSubmit: JSX.IntrinsicElements["form"]["onSubmit"] = evt => {
     this.forceShowButton = true
     if (!this.isValid) evt.preventDefault()
   }

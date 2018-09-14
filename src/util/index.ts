@@ -1,17 +1,12 @@
 import fetch from "cross-fetch"
+import { IncomingMessage } from "http"
 import ipUtils from "ip"
 
-export const getIp = req =>
+export const getIp = (req: IncomingMessage) =>
   req && req.connection && req.connection.remoteAddress
 
-export const getCountryCode = async ip => {
+export const getCountryCode = async (ip?: string) => {
   if (!ip || ipUtils.isPrivate(ip)) ip = ""
-  /*{
-    const response = await fetch("http://whatismyip.akamai.com")
-    const text = await response.text()
-    ip = text.trim()
-  }*/
-
   const response = await fetch(`https://ipinfo.io/${ip && ip + "/"}country`)
   const text = await response.text()
   const country = text.trim().toLowerCase()
@@ -22,7 +17,8 @@ export const getFlag = (() => {
   const prefix = 55356 // 1st part of every flag emoji
   const base_emoji = 56806 // 2nd part of "A" flag emoji
   const base_letter = 65 // "A" letter
-  return code => {
+
+  return (code: string) => {
     code = code.toUpperCase()
     const [fst, snd] = [0, 1].map(
       pst => base_emoji + code.charCodeAt(pst) - base_letter
