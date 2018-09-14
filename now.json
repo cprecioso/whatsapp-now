@@ -1,0 +1,9 @@
+{
+  "name": "whatsapp",
+  "alias": "whatsapp",
+  "type": "static",
+  "public": true,
+  "static": {
+    "redirects": [{ "source": "/:phone", "destination": "/?phone=:phone" }]
+  }
+}
