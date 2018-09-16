@@ -3,6 +3,10 @@ import dynamic from "next/dynamic"
 import React from "react"
 import Box from "../src/components/Box"
 
+require.resolve("../src/model/PhoneNumber")
+require.resolve("mobx")
+require.resolve("mobx-react")
+
 // @ts-ignore
 const phone = process.browser ? document.location.hash.slice(0) : false
 
