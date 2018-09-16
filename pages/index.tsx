@@ -1,11 +1,20 @@
 import { NextSFC } from "next"
+import dynamic from "next/dynamic"
 import React from "react"
 import Box from "../src/components/Box"
-import PhoneForm from "../src/components/PhoneForm"
-import Redirector from "../src/components/Redirector"
 
 // @ts-ignore
 const phone = process.browser ? document.location.hash.slice(0) : false
+
+// @ts-ignore
+const DynamicRedirector = dynamic(import("../src/components/Redirector"), {
+  loading: () => null
+})
+// @ts-ignore
+const DynamicPhoneForm = dynamic(import("../src/components/PhoneForm"), {
+  ssr: false,
+  loading: () => null
+})
 
 declare namespace IndexPage {
   interface Props {}
@@ -13,7 +22,9 @@ declare namespace IndexPage {
 
 const IndexPage: NextSFC<IndexPage.Props> = () => (
   <>
-    <Box>{phone ? <Redirector phone={phone} /> : <PhoneForm />}</Box>
+    <Box>
+      {phone ? <DynamicRedirector phone={phone} /> : <DynamicPhoneForm />}
+    </Box>
     <footer>
       Made by <a href="https://carlosprecioso.com">Carlos Precioso</a> ·{" "}
       <a href="https://github.com/cprecioso/whatsapp-now">Open source</a>
