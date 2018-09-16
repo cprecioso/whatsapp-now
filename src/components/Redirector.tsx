@@ -1,54 +1,80 @@
-import { autorun, observable, runInAction } from "mobx"
+import { action, autorun, observable, runInAction } from "mobx"
 import { observer } from "mobx-react"
-import Link from "next/link"
+import dynamic from "next/dynamic"
 import React, { Component } from "react"
 import PhoneNumberModel from "../model/PhoneNumber"
 
+// @ts-ignore
+const DynamicPhoneForm = dynamic(import("./PhoneForm"), { loading: () => null })
+
 declare namespace Redirector {
+  type Status = "loading" | "redirecting" | "error" | "try-again"
   interface Props {
     phone: string
   }
 }
+
+type Status = Redirector.Status
 
 @observer
 class Redirector extends Component<Redirector.Props> {
   model = new PhoneNumberModel(this.props.phone)
 
   @observable
-  errorState = false
+  status: Status = "loading"
 
   async componentDidMount() {
     this.model.updateCountry()
     autorun(() => {
       if (this.model.userCountry) {
         if (this.model.isValid) {
+          runInAction(() => (this.status = "redirecting"))
           document.location.href = `https://api.whatsapp.com/send?phone=${
             this.model.whatsAppNumber
           }`
         } else {
-          runInAction(() => (this.errorState = true))
+          runInAction(() => (this.status = "error"))
         }
       }
     })
   }
 
-  render() {
-    return (
-      <div>
-        {this.errorState ? (
+  @action
+  onTryAgain = () => (this.status = "try-again")
+
+  renderStateFragment() {
+    switch (this.status) {
+      case "loading":
+        return <>Loading...</>
+      case "redirecting":
+        return <>Say something nice!</>
+      case "error":
+        return (
           <>
             Invalid number.
             <br />
-            <Link
-              href={{ pathname: "/", query: { startWith: this.props.phone } }}
-              prefetch
-            >
-              <a>Try with another?</a>
-            </Link>
+            <a href="#" onClick={this.onTryAgain}>
+              Try with another?
+            </a>
+            <div className="hidden">
+              <DynamicPhoneForm />
+            </div>
+            <style jsx>{`
+              .hidden {
+                display: none;
+              }
+            `}</style>
           </>
-        ) : (
-          <>Loading...</>
-        )}
+        )
+      case "try-again":
+        return <DynamicPhoneForm defaultNumber={this.props.phone} />
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        {this.renderStateFragment()}
         <style jsx>{`
           div {
             text-align: center;

@@ -7,18 +7,13 @@ import Redirector from "../src/components/Redirector"
 declare namespace IndexPage {
   interface Props {
     phone?: string
-    startWith?: string
   }
 }
 
-const IndexPage: NextSFC<IndexPage.Props> = ({ phone, startWith }) => (
+const IndexPage: NextSFC<IndexPage.Props> = ({ phone }) => (
   <>
     <Box>
-      {phone ? (
-        <Redirector phone={phone} />
-      ) : (
-        <PhoneForm defaultNumber={startWith} />
-      )}
+      {phone ? <Redirector phone={phone} /> : <PhoneForm />}
     </Box>
     <footer>
       Made by <a href="https://carlosprecioso.com">Carlos Precioso</a> ·{" "}
@@ -50,8 +45,7 @@ const IndexPage: NextSFC<IndexPage.Props> = ({ phone, startWith }) => (
 )
 
 IndexPage.getInitialProps = async ({ query }) => ({
-  phone: query.phone && "" + query.phone,
-  startWith: query.startWith && "" + query.startWith
+  phone: query.phone && "" + query.phone
 })
 
 export default IndexPage
