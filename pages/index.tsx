@@ -4,17 +4,16 @@ import Box from "../src/components/Box"
 import PhoneForm from "../src/components/PhoneForm"
 import Redirector from "../src/components/Redirector"
 
+// @ts-ignore
+const phone = process.browser ? document.location.hash.slice(0) : false
+
 declare namespace IndexPage {
-  interface Props {
-    phone?: string
-  }
+  interface Props {}
 }
 
-const IndexPage: NextSFC<IndexPage.Props> = ({ phone }) => (
+const IndexPage: NextSFC<IndexPage.Props> = () => (
   <>
-    <Box>
-      {phone ? <Redirector phone={phone} /> : <PhoneForm />}
-    </Box>
+    <Box>{phone ? <Redirector phone={phone} /> : <PhoneForm />}</Box>
     <footer>
       Made by <a href="https://carlosprecioso.com">Carlos Precioso</a> ·{" "}
       <a href="https://github.com/cprecioso/whatsapp-now">Open source</a>
@@ -43,9 +42,5 @@ const IndexPage: NextSFC<IndexPage.Props> = ({ phone }) => (
     `}</style>
   </>
 )
-
-IndexPage.getInitialProps = async ({ query }) => ({
-  phone: query.phone && "" + query.phone
-})
 
 export default IndexPage
