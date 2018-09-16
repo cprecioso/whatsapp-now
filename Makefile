@@ -38,10 +38,6 @@ out: .next/BUILD_ID
 serve: out
 	$(serve) out
 
-.PHONY: watch
-watch:
-	$(watch) make pages
-
 .PHONY: deploy
 deploy: out
 	$(now) deploy out --local-config=../now.json
