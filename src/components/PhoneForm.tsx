@@ -7,13 +7,13 @@ import PhoneInput from "./PhoneInput"
 
 declare namespace PhoneForm {
   interface Props {
-    defaultNumber?: string
+    defaultPhone?: string
   }
 }
 
 @observer
 class PhoneForm extends Component<PhoneForm.Props> {
-  model = new PhoneNumberModel(this.props.defaultNumber)
+  model = new PhoneNumberModel(this.props.defaultPhone)
 
   @observable
   forceShowButton = false

@@ -1,33 +1,19 @@
 import { NextSFC } from "next"
-import dynamic from "next/dynamic"
 import React from "react"
 import Box from "../src/components/Box"
-
-require.resolve("../src/model/PhoneNumber")
-require.resolve("mobx")
-require.resolve("mobx-react")
-
-// @ts-ignore
-const phone = process.browser ? document.location.hash.slice(0) : false
-
-// @ts-ignore
-const DynamicRedirector = dynamic(import("../src/components/Redirector"), {
-  loading: () => null
-})
-// @ts-ignore
-const DynamicPhoneForm = dynamic(import("../src/components/PhoneForm"), {
-  ssr: false,
-  loading: () => null
-})
+import PhoneForm from "../src/components/PhoneForm"
+import PhoneNumberModel from "../src/model/PhoneNumber"
 
 declare namespace IndexPage {
-  interface Props {}
+  interface Props {
+    defaultPhone?: string
+  }
 }
 
-const IndexPage: NextSFC<IndexPage.Props> = () => (
+const IndexPage: NextSFC<IndexPage.Props> = ({ defaultPhone }) => (
   <>
     <Box>
-      {phone ? <DynamicRedirector phone={phone} /> : <DynamicPhoneForm />}
+      <PhoneForm defaultPhone={defaultPhone} />
     </Box>
     <footer>
       Made by <a href="https://carlosprecioso.com">Carlos Precioso</a> ·{" "}
