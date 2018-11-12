@@ -13,8 +13,8 @@ clean:
 .PHONY: bootstrap
 bootstrap: node_modules
 
-node_modules: yarn.lock package.json
-	yarn install
+node_modules: shrinkwrap.yaml package.json
+	pnpm install
 
 .PHONY: dev
 dev: node_modules
