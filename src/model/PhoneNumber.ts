@@ -45,6 +45,11 @@ export default class PhoneNumberModel {
   }
 
   @computed
+  get whatsAppUrl() {
+    return `https://api.whatsapp.com/send?phone=${this.whatsAppNumber}`
+  }
+
+  @computed
   get normalizedNumber() {
     return this.pnObject.getNumber("international")
   }

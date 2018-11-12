@@ -44,4 +44,24 @@ const IndexPage: NextSFC<IndexPage.Props> = ({ defaultPhone }) => (
   </>
 )
 
+IndexPage.getInitialProps = async ({ query, req, res }) => {
+  const phone = query.phone as string | undefined
+  if (phone) {
+    if (req && res) {
+      const model = new PhoneNumberModel(phone)
+      model.setCountryCode(req.headers["cf-ipcountry"] as string)
+
+      if (model.isValid) {
+        res.statusCode = 301
+        res.setHeader("Location", model.whatsAppUrl)
+        res.end()
+      }
+    }
+
+    return { defaultPhone: phone }
+  } else {
+    return {}
+  }
+}
+
 export default IndexPage
