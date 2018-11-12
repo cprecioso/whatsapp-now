@@ -1,5 +1,5 @@
 import PhoneNumber from "awesome-phonenumber"
-import { computed, flow, observable } from "mobx"
+import { action, computed, observable } from "mobx"
 import { getCountryCode } from "../util"
 
 export default class PhoneNumberModel {
@@ -13,9 +13,15 @@ export default class PhoneNumberModel {
     this.number = phone
   }
 
-  updateCountry = flow(function*(this: PhoneNumberModel) {
-    this.userCountry = yield getCountryCode()
-  })
+  @action
+  setCountryCode(cc: string) {
+    this.userCountry = cc
+  }
+
+  async updateCountry() {
+    const countryCode = await getCountryCode()
+    this.setCountryCode(countryCode)
+  }
 
   @computed
   get pnObject() {
