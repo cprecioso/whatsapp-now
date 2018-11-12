@@ -5,7 +5,9 @@ import React, { Component } from "react"
 import PhoneNumberModel from "../model/PhoneNumber"
 
 // @ts-ignore
-const DynamicPhoneForm = dynamic(import("./PhoneForm"), { loading: () => null })
+const DynamicPhoneForm = dynamic(import("./PhoneForm"), {
+  loading: () => null
+})
 
 declare namespace Redirector {
   type Status = "loading" | "redirecting" | "error" | "try-again"
@@ -29,7 +31,7 @@ class Redirector extends Component<Redirector.Props> {
       if (this.model.userCountry) {
         if (this.model.isValid) {
           runInAction(() => (this.status = "redirecting"))
-          document.location.href = `https://api.whatsapp.com/send?phone=${
+          document.location!.href = `https://api.whatsapp.com/send?phone=${
             this.model.whatsAppNumber
           }`
         } else {
