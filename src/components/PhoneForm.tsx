@@ -54,11 +54,6 @@ class PhoneForm extends Component<PhoneForm.Props> {
     return this.currentCountry ? getFlag(this.currentCountry) : ""
   }
 
-  @computed
-  get showFlag() {
-    return this.model.number.length > 0
-  }
-
   @action
   handleChange: PhoneInput.Events["onChange"] = v => {
     this.model.number = v
@@ -87,7 +82,6 @@ class PhoneForm extends Component<PhoneForm.Props> {
         <PhoneInput
           phoneNumber={this.model.number}
           flag={this.flag}
-          showFlag={this.showFlag}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
         />

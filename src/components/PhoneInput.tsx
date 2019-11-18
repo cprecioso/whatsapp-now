@@ -5,7 +5,6 @@ declare namespace PhoneInput {
   interface Props {
     phoneNumber?: string
     flag?: string
-    showFlag?: boolean
   }
   interface Events {
     onChange?: (input: string) => void
@@ -15,9 +14,9 @@ declare namespace PhoneInput {
 }
 
 const PhoneInput: SFC<PhoneInput.Props & PhoneInput.Events> = observer(
-  ({ phoneNumber, flag, showFlag, onFocus, onChange, onBlur }) => (
+  ({ phoneNumber, flag, onFocus, onChange, onBlur }) => (
     <label className="inputLine">
-      <span className={`flag fades ${showFlag ? "" : "hidden"}`}>{flag}</span>
+      <span className="flag">{flag || "🏳️"}</span>
       <input
         autoFocus
         className="input"
