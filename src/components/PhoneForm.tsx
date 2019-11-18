@@ -91,7 +91,11 @@ class PhoneForm extends Component<PhoneForm.Props> {
           onChange={this.handleChange}
           onBlur={this.handleBlur}
         />
-        <input type="hidden" name="phone" value={this.model.whatsAppNumber} />
+        <input
+          type="hidden"
+          name="phone"
+          value={this.model.whatsAppNumber || ""}
+        />
         <input
           className={`submit collapses ${this.showButton ? "" : "hidden"}`}
           type="submit"
