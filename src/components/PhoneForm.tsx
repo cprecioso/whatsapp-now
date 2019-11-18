@@ -21,7 +21,10 @@ class PhoneForm extends Component<PhoneForm.Props> {
   prevTimer: ReturnType<typeof setTimeout> | null = null
 
   componentDidMount() {
-    this.model.updateCountry()
+    this.model.updateCountry().then(
+      () => {},
+      () => {}
+    )
 
     autorun(() => {
       if (this.forceShowButton) {
