@@ -43,6 +43,7 @@ const IndexPage: NextPage<IndexPage.Props> = ({ defaultPhone } = {}) => (
   </>
 )
 
+/*
 IndexPage.getInitialProps = async ({ query, req, res }) => {
   const phone = query.phone as string | undefined
   if (phone) {
@@ -65,5 +66,6 @@ IndexPage.getInitialProps = async ({ query, req, res }) => {
     return {}
   }
 }
+*/
 
 export default IndexPage
