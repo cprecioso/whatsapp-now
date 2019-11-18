@@ -2,7 +2,6 @@ import { NextPage } from "next"
 import React from "react"
 import Box from "../src/components/Box"
 import PhoneForm from "../src/components/PhoneForm"
-import PhoneNumberModel from "../src/model/PhoneNumber"
 
 declare namespace IndexPage {
   interface Props {
@@ -48,6 +47,9 @@ IndexPage.getInitialProps = async ({ query, req, res }) => {
   const phone = query.phone as string | undefined
   if (phone) {
     if (req && res) {
+      const { default: PhoneNumberModel } = await import(
+        "../src/model/PhoneNumber"
+      )
       const model = new PhoneNumberModel(phone)
       model.setCountryCode(req.headers["cf-ipcountry"] as string)
 
