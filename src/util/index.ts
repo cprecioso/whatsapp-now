@@ -13,16 +13,20 @@ export const getCountryCode = async (ip?: string) => {
   return country
 }
 
-export const getFlag = (() => {
-  const prefix = 55356 // 1st part of every flag emoji
-  const base_emoji = 56806 // 2nd part of "A" flag emoji
-  const base_letter = 65 // "A" letter
+export const getFlag = (countryCode: string) => {
+  countryCode = countryCode.slice(0, 2).toUpperCase()
 
-  return (code: string) => {
-    code = code.toUpperCase()
-    const [fst, snd] = [0, 1].map(
-      pst => base_emoji + code.charCodeAt(pst) - base_letter
-    )
-    return String.fromCharCode(prefix, fst, prefix, snd)
-  }
-})()
+  /*
+    These magic numbers are charCode math, where we assume the offset between
+    any two uppercase leters (e.g. A - C = 2) is equal between the emoji flag
+    variant of those letters (e.g. (emoji A) - (emoji C) = 2).
+  */
+
+  return String.fromCharCode(
+    55356 /* First codepoint of all flag letter emoji */,
+    56741 /* Offset between the uppercase A and the emoji A */ +
+      countryCode.charCodeAt(0),
+    55356,
+    56741 + countryCode.charCodeAt(1)
+  )
+}
