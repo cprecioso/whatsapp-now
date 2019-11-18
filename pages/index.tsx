@@ -1,4 +1,4 @@
-import { NextSFC } from "next"
+import { NextPage } from "next"
 import React from "react"
 import Box from "../src/components/Box"
 import PhoneForm from "../src/components/PhoneForm"
@@ -10,7 +10,7 @@ declare namespace IndexPage {
   }
 }
 
-const IndexPage: NextSFC<IndexPage.Props> = ({ defaultPhone }) => (
+const IndexPage: NextPage<IndexPage.Props> = ({ defaultPhone } = {}) => (
   <>
     <Box>
       <PhoneForm defaultPhone={defaultPhone} />

@@ -7,7 +7,15 @@
     "jsx": "preserve",
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
-  "include": ["pages/**/*", "src/**/*"]
+  "include": ["pages/**/*", "src/**/*"],
+  "exclude": ["node_modules"]
 }

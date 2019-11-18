@@ -1,6 +1,6 @@
-import fetch from "cross-fetch"
 import { IncomingMessage } from "http"
 import ipUtils from "ip"
+import "isomorphic-fetch"
 
 export const getIp = (req: IncomingMessage) =>
   req && req.connection && req.connection.remoteAddress
