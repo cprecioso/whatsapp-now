@@ -55,7 +55,7 @@ class PhoneForm extends Component<PhoneForm.Props> {
   }
 
   @action
-  handleChange: PhoneInput.Events["onChange"] = v => {
+  handleChange: PhoneInput.Events["onChange"] = (v) => {
     this.model.number = v
   }
 
@@ -66,7 +66,7 @@ class PhoneForm extends Component<PhoneForm.Props> {
   }
 
   @action
-  handleSubmit: JSX.IntrinsicElements["form"]["onSubmit"] = evt => {
+  handleSubmit: JSX.IntrinsicElements["form"]["onSubmit"] = (evt) => {
     this.forceShowButton = true
     if (!this.model.isValid) evt.preventDefault()
   }

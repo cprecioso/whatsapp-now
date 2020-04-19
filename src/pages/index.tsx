@@ -1,7 +1,7 @@
 import { NextPage } from "next"
 import React from "react"
-import Box from "../src/components/Box"
-import PhoneForm from "../src/components/PhoneForm"
+import Box from "../components/Box"
+import PhoneForm from "../components/PhoneForm"
 
 declare namespace IndexPage {
   interface Props {

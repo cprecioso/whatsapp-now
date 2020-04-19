@@ -12,8 +12,8 @@
     "ip": "^1.1.5",
     "isomorphic-fetch": "^2.2.1",
     "mobx": "^5.1.1",
-    "mobx-react": "^6.1.4",
-    "next": "^9.3.2",
+    "mobx-react": "^6.2.2",
+    "next": "^9.3.5",
     "react": "^16.5.1",
     "react-dom": "^16.5.1"
   },
@@ -21,11 +21,10 @@
     "@babel/plugin-proposal-class-properties": "^7.7.0",
     "@babel/plugin-proposal-decorators": "^7.7.0",
     "@types/ip": "^1.1.0",
-    "@types/next": "^9.0.0",
-    "@types/node": "^12.12.8",
-    "@types/react": "^16.4.14",
+    "@types/node": "^13.13.0",
+    "@types/react": "^16.9.34",
     "@types/react-dom": "^16.0.7",
-    "@types/styled-jsx": "^2.2.5",
+    "prettier": "^2.0.4",
     "typescript": "^3.7.2"
   }
 }

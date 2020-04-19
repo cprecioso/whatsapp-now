@@ -1,6 +1,6 @@
-import React, { SFC } from "react"
+import React, { FunctionComponent } from "react"
 
-const Box: SFC = ({ children }) => (
+const Box: FunctionComponent = ({ children }) => (
   <div className="root">
     <div className="box">{children}</div>
     <style jsx>{`
