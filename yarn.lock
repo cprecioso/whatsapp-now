@@ -1312,10 +1312,10 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-awesome-phonenumber@^2.2.6:
-  version "2.30.0"
-  resolved "https://registry.yarnpkg.com/awesome-phonenumber/-/awesome-phonenumber-2.30.0.tgz#2ee75eb541c47038e8073de03791aef94373d30c"
-  integrity sha512-SwYTHSCLwd9K6wGe9S3mLnfbnEXK3MQL18JBXgiDDUAFMR4QFH0Vit1jpQ+j3Vfoxp7UqneqawezWL+tGEbcFg==
+awesome-phonenumber@^2.31.0:
+  version "2.31.0"
+  resolved "https://registry.yarnpkg.com/awesome-phonenumber/-/awesome-phonenumber-2.31.0.tgz#1a1ead04344bbf8a267c1b559331d996550796cb"
+  integrity sha512-d093t+pIzztgjeVZg4ckzR5Ok+Qw6TSrjNM01JKeJxPtGxN+BYM+qhiZNCpdyFF8wyXz97B9wef/rar1udYDMQ==
 
 babel-code-frame@^6.22.0:
   version "6.26.0"
