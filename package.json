@@ -13,7 +13,7 @@
     "isomorphic-fetch": "^2.2.1",
     "mobx": "^5.1.1",
     "mobx-react": "^6.2.2",
-    "next": "^9.3.5",
+    "next": "^9.4.0",
     "react": "^16.5.1",
     "react-dom": "^16.5.1"
   },
