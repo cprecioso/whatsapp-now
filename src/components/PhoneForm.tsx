@@ -53,7 +53,7 @@ export const PhoneForm: FunctionComponent<Props> = ({
   }, [model])
 
   const handleChange = React.useCallback<OnChangeCb>(
-    (newNumber) => setPhoneNumber(newNumber),
+    (newNumber) => setPhoneNumber(decodeURIComponent(newNumber)),
     []
   )
 
