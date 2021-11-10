@@ -5,7 +5,7 @@ export const middleware = (
 ): Promise<Response | undefined> | Response | undefined => {
   const country = req.geo.country
 
-  console.log(req.geo)
+  console.log(req)
 
   if (country) {
     return NextResponse.rewrite(`/${country?.slice(0, 2).toLowerCase()}`)
