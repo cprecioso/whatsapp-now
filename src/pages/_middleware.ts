@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest, NextResponse, NextFetchEvent } from "next/server"
 
 export const middleware = (
   req: NextRequest,
-  ev
+  ev: NextFetchEvent
 ): Promise<Response | undefined> | Response | undefined => {
   const country = req.geo.country?.slice(0, 2).toLowerCase()
 
